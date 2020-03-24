@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_205551) do
 
   create_table "cars", force: :cascade do |t|
     t.string "make"
+    t.string "model"
     t.integer "year"
     t.float "price"
     t.string "status"
@@ -35,6 +36,5 @@ ActiveRecord::Schema.define(version: 2020_03_23_205551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-end
 
 end
