@@ -1,3 +1,69 @@
+# require 'rest-client'
+# require 'json'
+# require 'pry'
+
+# require 'rest-client'
+# require 'json'
+# require 'pry'
+
+# require 'rest-client'
+# require 'json'
+# require 'pry'
+
+# require 'rest-client'
+# require 'json'
+# require 'pry'
+
+# require 'rest-client'
+# require 'json'
+# require 'pry'
+
+# require 'rest-client'
+# require 'json'
+# require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require 'rest-client'
+require 'json'
+require 'pry'
+
+
+
 class Dealership < ActiveRecord::Base
     has_many :cars
     has_many :customers, through: :cars
