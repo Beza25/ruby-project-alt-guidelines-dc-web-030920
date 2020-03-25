@@ -31,8 +31,8 @@ class CommandLine
     if !@customer
       @customer = Customer.create(name: customer)
     end
-    
   end
+  
   
   def user_type
     puts "Enter 1 to if you are a customer."
@@ -57,6 +57,7 @@ class CommandLine
         puts "#{index+1}.       Make: #{car.make}       Model: #{car.model}       Year: #{car.year}       Price: $#{car.price}\n"
        end
     elsif response == 2
+      customer
       # If 2 prompt to see either dealership list, or car
       
 
@@ -68,40 +69,75 @@ class CommandLine
   end
 
   def customer 
-    puts  "Enter 1 if you want to search dealerships " 
-    puts "Enter 2 if you want to search by car"
+    puts  "Enter 1 to search by dealerships " 
+    puts "Enter 2 to search by car"
+    puts "Enter 0 to go back to main menu"
     custromer_response = gets.chomp.to_i
     # return 
     if custromer_response == 1
-      puts "Enter 1 if you want to see all dealerships " 
-      puts "Enter 2 if you want to search a dealership"
-      
-
-
+      dealerships_or_cars
 
     elsif custromer_response == 2
-    end
+      # do something
     
+    elsif customer_responce == 0
+      first_options
+    end
   end
   
   def car_lists
     
     # Car.all
     # binding.pry
-    # puts "cars"
+    # puts "cars"z
   
   end
   
-  def dealership_lists
-    Dealership.all.each_with_index do |dealership, index|
-      puts "#{index+1}. #{dealership.name} located at #{dealership.location}\n"
-      puts "If you want to see all cars a dealership has enter 1" 
-      puts "If ", 
-      "please enter the dealership's name"
+  def dealerships_or_cars
+    puts "Enter 1 to see all dealerships " 
+    puts "Enter 2 to search a cars"
+    puts "Enter 0 to go back to main menu"
+    d_or_car = puts.chomp.to_i
+    if   d_or_car == 1 
+      delarships_list
+
+    elsif d_or_car == 2
+      # Something happens
+
+    elsif d_or_car == 0
+      first_options
+    end
+   
+      
     end
       user_dealership = gets.chomp.to_str.downcased
 
   end
+
+  def delarships_list
+    puts " Enter 1  to see all cars a dealership has" 
+    puts " Enter 2 to search a dealership by name " 
+    puts "Enter 0 to go back to main menu"
+    delarships_response = puts.chomp.to_i
+
+    if delarships_response == 1 
+      Dealership.all.each_with_index do |dealership, index|
+      puts "#{index+1}. #{dealership.name} located at #{dealership.location}\n"
+      elsif delarships_response == 2
+      puts "Enter the name of the dealership"
+      
+
+      elsif delarships_response == 0
+        first_options
+      
+      
+    end
+    
+    
+    
+    
+  end
+
   
   
   # puts " Do you want to see the list of cars a dealership has?"
