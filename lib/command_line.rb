@@ -34,29 +34,58 @@ class CommandLine
     
   end
   
+  def user_type
+    puts "Enter 1 to if you are a customer."
+    puts "Enter 2 if you an employee"
+
+  end
+  
   
   
   
   def first_options
   
     puts "Enter 1 to see all the car lists."
-    puts "Enter 2 to search dealerships"
+    puts "Enter 2 if you are a cutomer"
+    puts "Enter 3 if you like to access employee information"
     response = gets.chomp.to_i
     puts "#################################"
   
     if response == 1
        Car.all.each_with_index do |car, index|
-        puts 
+      
         puts "#{index+1}.       Make: #{car.make}       Model: #{car.model}       Year: #{car.year}       Price: $#{car.price}\n"
        end
     elsif response == 2
-      Dealership.all.each_with_index do |dealership, index|
-        puts "#{index+1}. #{dealership.name} located at #{dealership.location}\n"
-      end
+      # If 2 prompt to see either dealership list, or car
+      
+
+    elsif responce == 3  
+      #  ask to search by dealership
+      
+  
     end
+  end
+
+  def customer 
+    puts  "Enter 1 if you want to search dealerships " 
+    puts "Enter 2 if you want to search by car"
+    custromer_response = gets.chomp.to_i
+    # return 
+    if custromer_response == 1
+      puts "Enter 1 if you want to see all dealerships " 
+      puts "Enter 2 if you want to search a dealership"
+      
+
+
+
+    elsif custromer_response == 2
+    end
+    
   end
   
   def car_lists
+    
     # Car.all
     # binding.pry
     # puts "cars"
@@ -64,8 +93,14 @@ class CommandLine
   end
   
   def dealership_lists
-    puts "dealership"
-  
+    Dealership.all.each_with_index do |dealership, index|
+      puts "#{index+1}. #{dealership.name} located at #{dealership.location}\n"
+      puts "If you want to see all cars a dealership has enter 1" 
+      puts "If ", 
+      "please enter the dealership's name"
+    end
+      user_dealership = gets.chomp.to_str.downcased
+
   end
   
   
@@ -77,3 +112,35 @@ class CommandLine
 
 end
 
+
+# welcome
+# - look at all car
+# -employee
+#   -dealership
+#     -sold cars in dealership
+#     -sold cars count
+# -customer
+#  * 1 = search by dealerships 
+  #   - search by dealerships
+  #      * 1 = all delarships
+  #         - Display all Dealership
+  #             * 1 = chose your favorite dealership and go back so that you can search using your favourite dealership
+  #      * 2 = find the dealership of user's desire (user_dealership)
+  #          - the particular dealership
+  #             * 1 = all cars in this dealership
+  #                    - shows all the cars
+  #             * 2 = search car by make   (user_make )
+  #                    - show all cars that match the make provided by user
+  #                         * 1 = buy car
+  #                               - car belongs to customer 
+  #                         * 2 = don't buy car
+  #                                - exit out 
+#  * 2 = Search by cars                      
+#     -new cars 
+#     -old cars
+#     -search by make
+#     -buy car
+#   - search by all cars
+#     new cars
+#     old cars
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
