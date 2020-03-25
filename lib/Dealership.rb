@@ -24,6 +24,23 @@ class Dealership < ActiveRecord::Base
         end
     end
 
+    def self.dealership_spec_car(dealership_name) 
+        # iterate over Cars.all
+        # select cars specfic to the dealership
+         dealer = self.dealership (dealership_name)
+          Car.all.select do |c|
+          c.dealership_id == dealer.id 
+        end
+    end
+
+    def self.dealership(dealership_name)
+        self.all.find do |dealership|   
+            dealership.name.downcase == dealership_name
+         end
+    end
+
+    
+
 
 
     # returns all new cars for a dealership

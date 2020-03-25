@@ -5,6 +5,7 @@ command_line = CommandLine.new
 
 command_line.welcome
 command_line.save_customer
+
 command_line.first_options
 # car_lists
 

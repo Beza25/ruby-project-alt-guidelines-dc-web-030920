@@ -97,7 +97,7 @@ class CommandLine
     puts "Enter 1 to see all dealerships " 
     puts "Enter 2 to search a cars"
     puts "Enter 0 to go back to main menu"
-    d_or_car = puts.chomp.to_i
+    d_or_car = gets.chomp.to_i
     if   d_or_car == 1 
       delarships_list
 
@@ -107,45 +107,42 @@ class CommandLine
     elsif d_or_car == 0
       first_options
     end
-   
-      
-    end
-      user_dealership = gets.chomp.to_str.downcased
+      # user_dealership = gets.chomp.to_str.downcased
 
   end
 
   def delarships_list
-    puts " Enter 1  to see all cars a dealership has" 
-    puts " Enter 2 to search a dealership by name " 
-    puts "Enter 0 to go back to main menu"
-    delarships_response = puts.chomp.to_i
+    puts " Enter 1  to see list of all dealerships" 
+    puts " Enter 2 to search inventory by dealership name " 
+    puts " Enter 0 to go back to main menu"
+    delarships_response = gets.chomp.to_i
 
     if delarships_response == 1 
       Dealership.all.each_with_index do |dealership, index|
       puts "#{index+1}. #{dealership.name} located at #{dealership.location}\n"
-      elsif delarships_response == 2
-      puts "Enter the name of the dealership"
+      end
+    elsif delarships_response == 2
+      puts "Enter the  of the dealership"
+      # uniq_dealership = gets.chomp.to_str.downcase
+      # dealer = Dealership.dealership(uniq_dealership)
+      # binding.pry
+      # dealer.each_with_index do |dealership, index| 
+      # puts "#{index+1}. #{dealer.name} located at #{dealer.location}\n"
+      # end
+      dealrearship_cars = gets.chomp.to_str.downcase
+      cars = Dealership.dealership_spec_car(dealrearship_cars) 
+      cars.each_with_index do |car, index|
+      puts "#{index+1}.       Make: #{car.make}       Model: #{car.model}       Year: #{car.year}       Price: $#{car.price}\n"
+      end
+    
       
-
-      elsif delarships_response == 0
+      # puts "Enter 1 to see all the cars this dealership has"
+      
+    elsif delarships_response == 0
         first_options
       
-      
-    end
-    
-    
-    
-    
+    end   
   end
-
-  
-  
-  # puts " Do you want to see the list of cars a dealership has?"
-  
-  
-  
-  
-
 end
 
 

@@ -15,4 +15,11 @@ class Car < ActiveRecord::Base
     # end
 
 
+    # def dealership_cars(dealership_name)
+    #     .select{ |car|  }
+
+    # end
+
+
+
 end
