@@ -15,7 +15,7 @@ command_line.first_options
 
 # Press 1 to see all car lists
 # Press 2 to see the new cars
-# Presss 3to see used cars 
+# Presss 3 to see used cars 
 # Enter the make of the car to search a car
 
 

@@ -55,6 +55,7 @@ class Dealership < ActiveRecord::Base
 
     #returns a list of unsold cars
     def unsold_cars
+
         cars.select{ |car| car.customer_id == nil}
     end
 

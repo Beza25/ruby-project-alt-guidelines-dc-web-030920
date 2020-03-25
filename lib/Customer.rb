@@ -6,10 +6,7 @@ class Customer < ActiveRecord::Base
     # Returns all the cars a dealership has on the lot
 
    
-    # returns a list of cars with the same make a dealerhip has
-    def search_by_make (dealership, make)
-        dealership_cars(dealership).select{ |car| car.make == make}
-    end
+  
     
     # returns true if custormer has a car or false otherwise
     def bought_car 
