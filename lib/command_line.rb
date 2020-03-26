@@ -29,6 +29,8 @@ class CommandLine
   def get_character_from_user
     name = gets.chomp.to_str
   end
+
+
   
   # creates a new custormer with the name given
   # saves the customer to the database
@@ -40,7 +42,10 @@ class CommandLine
     end
     if !@customer
       @customer = Customer.create(name: customer)
+      @customer
+  
     end
+   
   end
   
   
@@ -79,11 +84,23 @@ class CommandLine
     elsif customer_response == 2
       car_lists
     elsif customer_response == 3 
-      "Create buy method"
+      customer_buy_car
     
     elsif customer_response == 0
       first_options
     end
+  end
+
+  def customer_buy_car 
+    puts "Enter the nubmer of the car you wish to buy"
+    available_cars = Car.all_cars_for_sale
+    present_cars(cars_to_buy)
+    buy_this_car = gets.chomp.to_i
+
+    buy = Car.available_cars.find do |index, car|
+       buy_this_car == index
+    end
+    Car.buy_car(@customer, buy )
   end
   
   def car_lists

@@ -17,12 +17,8 @@ class Dealership < ActiveRecord::Base
     # assign the cutomer to that car
     # (customer, car_id )
     # car.customer_id = customer
-    def sell_car(customer, car )
-        unsold_cars.select do  |c| 
-            c.id  == car.id  
-            c.customer_id = customer.id
-        end
-    end
+    
+    
 
     def self.dealership_spec_car(dealership_name) 
         # iterate over Cars.all
@@ -55,7 +51,6 @@ class Dealership < ActiveRecord::Base
 
     #returns a list of unsold cars
     def unsold_cars
-
         cars.select{ |car| car.customer_id == nil}
     end
 
