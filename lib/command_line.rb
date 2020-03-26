@@ -44,6 +44,8 @@ class CommandLine
       @customer
     end  
   end
+
+  
   
   
   def first_options
@@ -194,16 +196,33 @@ class CommandLine
     end
     
     buy_this_car = gets.chomp.to_i  
-    buy = Car.cars_available_hash.find do |key, car|   
+    bought_car_instance = Car.cars_available_hash.find do |key, car|   
       buy_this_car == key
     end
 
-    buy = buy[1]
-    purchased_car = Car.buy_car(@customer, buy)
+    # bought_car_instance = bought_car_instance[1]
+    # purchased_car = Car.buy_car(@customer, bought_car_instance)
+    # purchased_car.update(customer_id: @customer.id)
+ 
+    bought_car_instance = bought_car_instance[1]
+    purchased_car = bought_car_instance.buy_car(@customer)
+    purchased_car.update(customer_id: @customer.id)
+ 
+    
     puts "Congratulations! #{@customer.name} you now own a #{purchased_car.status} #{purchased_car.make}, #{purchased_car.model}!"
     goodbye
   end
+  # def save_car
+  #   car = get_character_from_user
   
+  #   @customer = Customer.all.find do |cust|
+  #     cust.name == customer
+  #   end
+  #   if !@customer
+  #     @customer = Customer.create(name: customer)
+  #     @customer
+  #   end  
+  # end
   def car_lists
     puts " Enter 1 to see a list of all available cars" 
     puts " Enter 2 to search the cars by make"
@@ -293,7 +312,7 @@ class CommandLine
   def goodbye
     puts "-------------------------------------------Goodbye--------------------------------------------"
   end
-  
+
 end
 
 

@@ -27,11 +27,9 @@ class Car < ActiveRecord::Base
 
      
     # returns a car with the name of the customer who bought the car
-    def self.buy_car(customer_instance, car)
-      car.customer_id = customer_instance.id
-      car
+    def buy_car(customer_instance)
+      self.customer_id = customer_instance.id
+      self
     end
-  
-    
-  
+
 end
