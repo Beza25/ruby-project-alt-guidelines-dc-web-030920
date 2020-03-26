@@ -5,6 +5,9 @@ class Car < ActiveRecord::Base
     def self.all_cars_for_sale
       self.all.select{|car| car.customer_id == nil}
     end
+    def self.all_sold_cars
+      self.all.select{|car| car.customer_id != nil}
+    end
 
 
       # returns a list of cars with the same make a dealership has
@@ -22,11 +25,10 @@ class Car < ActiveRecord::Base
         cars
     end
 
-    # passing the customer and car 
-
+     
+    # returns a car with the name of the customer who bought the car
     def self.buy_car(customer_instance, car)
       car.customer_id = customer_instance.id
-      
       car
     end
   

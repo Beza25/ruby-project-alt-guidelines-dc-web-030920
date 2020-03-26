@@ -8,17 +8,26 @@ class Dealership < ActiveRecord::Base
 
     #returns a list of all sold cars
     def sold_cars 
-        cars.select{ |car| car.customer_id != nil}
+        cars.select do |car| 
+            car.customer_id != nil    
+        end
     end
 
+    def total_sale
+        total = 0
+        sold_cars.each do |car|
+            total += car.price
+        end
+        total
+    end
 
-    # go through the unsold cars 
-    # if custormer's choice of car is inside the unsold cars
-    # assign the customer to that car
-    # (customer, car_id )
-    # car.customer_id = customer
-    
-    
+   def self.dealership_hash
+    dealership_list = {}
+    self.all.each_with_index do |dealership_info, index|
+        dealership_list[index+1] = dealership_info
+    end  
+    dealership_list
+   end
 
     def self.dealership_spec_car(dealership_name) 
         # iterate over Cars.all
