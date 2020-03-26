@@ -1,7 +1,7 @@
 
 class CommandLine
 
-  def present_cars (object)
+  def present_cars(object)
    object.each_with_index do |car, index|
     puts "#{index+1}.       Make: #{car.make}       Model: #{car.model}       Year: #{car.year}       Price: $#{car.price}\n"
     end
@@ -10,17 +10,20 @@ class CommandLine
     def present_dealerships(object) 
       object.each_with_index do |dealership, index|
         puts "#{index+1}. #{dealership.name} located at #{dealership.location}\n"
+        
       end
     end
+    
+ 
 
  
 
   def welcome
     puts "**********************************************************" 
-    puts "*             Welcome to Our App                         *" 
+    puts "*                 Welcome to Our App                     *" 
     puts "**********************************************************" 
     puts ""
-    puts " ------ any time, enter 0 to get back to this menu ------"
+    puts "------ At any time, enter 0 to return to the main menu ------"
     
     puts " Please enter a customer name"
   end
@@ -50,9 +53,10 @@ class CommandLine
   
   
   def first_options
-    # puts " Enter 1 to see all the car lists."
-    puts " Enter 1 if you are a cutomer"
-    puts " Enter 2 if you are an employee1"
+    # puts "Enter 1 to see all the car lists."
+    puts " Enter 1 if you are a customer"
+    puts " Enter 2 if you are an employee"
+    
     
     response = gets.chomp.to_i
     puts "#################################"
@@ -74,8 +78,23 @@ class CommandLine
   def customer 
     puts " Enter 1 to search through dealership data" 
     puts " Enter 2 to search through all car data"
-    puts " Enter 3 to buy a car "
+    puts " Enter 3 to purchase a car"
   
+    ##----THIS IS MORE ELEGANT THAN ELSIF---##
+    # case customer_response = gets.chomp.to_i
+    # when 0
+    # first_options
+    # when 1
+    #   dealerships_list
+    # when 2
+        # car_lists
+    # when 3
+    # customer_buy_car
+
+    # else
+      # "Error: Invalid entry! (#{customer_response = gets.chomp.to_i})"
+    # end
+
     customer_response = gets.chomp.to_i
     # return 
     if customer_response == 1
@@ -92,40 +111,70 @@ class CommandLine
   end
 
   def customer_buy_car 
-    puts "Enter the nubmer of the car you wish to buy"
-    available_cars = Car.all_cars_for_sale
-    present_cars(cars_to_buy)
-    buy_this_car = gets.chomp.to_i
+    puts " Enter the number of the car you wish to purchase"
+    # available_cars = Car.all_cars_for_sale
+    # present_cars(available_cars)
+    
+   
 
-    buy = Car.available_cars.find do |index, car|
-       buy_this_car == index
+    Car.cars_available_hash.each do |index, car|
+      puts "#{index}.       Make: #{car.make}       Model: #{car.model}       Year: #{car.year}       Price: $#{car.price}\n"
     end
-    Car.buy_car(@customer, buy )
+    buy_this_car = gets.chomp.to_i
+    
+    buy = Car.cars_available_hash.find do |key, car|
+      
+      buy_this_car == key
+     
+    end
+    buy = buy[1]
+  
+    purchased_car = Car.buy_car(@customer, buy)
+  
+    puts "Congratulations! #{@customer.name} you now own a #{purchased_car.status} #{purchased_car.make}, #{purchased_car.model}!"
+    puts "Customer_id: #{purchased_car.customer_id}"
+    goodbye
   end
   
   def car_lists
-    puts " Enter 1 to see list of all available cars" 
-    puts " Enter 2 to search cars by make"
+    puts " Enter 1 to see a list of all available cars" 
+    puts " Enter 2 to search the cars by make"
     car_response = gets.chomp.to_i
 
+    
     if car_response == 1
       cars = Car.all_cars_for_sale
       present_cars(cars)
       goodbye
-    
+      
     elsif car_response == 2
-      puts " Enter the make of car"
+      puts " Enter the make of the car"
       make_response = gets.chomp.to_str.downcase
       cars = Car.search_by_make(make_response)
       present_cars(cars)
       goodbye
     end
   end
-
-
+  
+  ##----THIS IS MORE ELEGANT THAN ELSIF---##
+# case car_response = gets.chomp.to_i
+    # when 1
+#       cars = Car.all_cars_for_sale
+#       present_cars(cars)
+#       goodbye
+    # when 2
+        # puts " Enter the make of the car"
+        # make_response = gets.chomp.to_str.downcase
+        # cars = Car.search_by_make(make_response)
+        # present_cars(cars)
+        # goodbye
+    # else
+      # " Error: Invalid entry! (#{car_response = gets.chomp.to_i})"
+    # end
+    
   def dealerships_list
-    puts " Enter 1  to see list of all dealerships" 
-    puts " Enter 2 to search inventory by dealership name " 
+    puts " Enter 1 to see a list of all the dealerships" 
+    puts " Enter 2 to search the inventory by dealership name" 
     dealerships_response = gets.chomp.to_i
 
     if dealerships_response == 1 
@@ -133,7 +182,7 @@ class CommandLine
       goodbye
 
     elsif dealerships_response == 2
-      puts "Enter the  of the dealership"
+      puts " Enter the name of the dealership"
       dealership_cars = gets.chomp.to_str.downcase
       cars = Dealership.dealership_spec_car(dealership_cars) 
       present_cars(cars)
@@ -148,10 +197,27 @@ class CommandLine
     elsif dealerships_response == 0
         first_options   
     end   
+  ##----THIS IS MORE ELEGANT THAN ELSIF---##
+    # case dealership_response = gets.chomp.to_i
+    # when 0
+    #   first_options
+    # when 1
+    #   present_dealerships(Dealership.all)
+    #   goodbye
+    # when 2
+    #       puts " Enter the name of the dealership"
+    #       dealership_cars = gets.chomp.to_str.downcase
+    #       cars = Dealership.dealership_spec_car(dealership_cars) 
+    #       present_cars(cars)
+    #       goodbye
+    # else
+      # " Error: Invalid entry! (#{dealership_response = gets.chomp.to_i})"
+    # end
+
   end
   
   def goodbye
-    puts "-------------------------------------------Good Bye--------------------------------------------"
+    puts "-------------------------------------------Goodbye--------------------------------------------"
   end
 end
   # def dealerships_or_cars
@@ -168,7 +234,7 @@ end
   #   elsif d_or_car == 0
   #     first_options
   #   end
-  #     # user_dealership = gets.chomp.to_str.downcased
+  #     # user_dealership = gets.chomp.to_str.downcase
 
   # end
 
@@ -177,7 +243,7 @@ end
 
 # welcome
 #   - list all cars
-    # 1 if cutomer
+    # 1 if customer
     #   1.1 car options
     #       1.1.1 list all cars
     #       1.1.2 search cars by make
@@ -187,7 +253,7 @@ end
     #       1.2.2 search inventory by dealership
     #           - list cars by make : option to buy car
     #   1.3 buy car
-                # sort by make
+                #sort by make
                 #sort by price
                 #sort by condition
     
@@ -210,8 +276,8 @@ end
 #  * 1 = search by dealerships 
   #   - search by dealerships
   #      * 1 = all delarships
-  #         - Display all Dealership
-  #             * 1 = chose your favorite dealership and go back so that you can search using your favourite dealership
+  #         - Display all Dealerships
+  #             * 1 = chose your favorite dealership and go back so that you can search using your favorite dealership
   #      * 2 = find the dealership of user's desire (user_dealership)
   #          
   #             * 1 = all cars in this dealership

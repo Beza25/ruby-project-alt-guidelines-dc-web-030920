@@ -14,7 +14,7 @@ class Dealership < ActiveRecord::Base
 
     # go through the unsold cars 
     # if custormer's choice of car is inside the unsold cars
-    # assign the cutomer to that car
+    # assign the customer to that car
     # (customer, car_id )
     # car.customer_id = customer
     

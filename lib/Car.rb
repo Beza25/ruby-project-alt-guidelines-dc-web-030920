@@ -7,54 +7,29 @@ class Car < ActiveRecord::Base
     end
 
 
-      # returns a list of cars with the same make a dealerhip has
-    def self.search_by_make (make)
+      # returns a list of cars with the same make a dealership has
+    def self.search_by_make(make)
         self.all_cars_for_sale.select { |car| car.make.downcase == make}
         # dealership_cars(dealership).select{ |car| car.make == make}
     end
 
-    # returns avaliable cars in hash with index 
-    def self.cars_avalible 
+    # returns available cars in hash with index 
+    def self.cars_available_hash 
         cars = {}
         all_cars_for_sale.each_with_index do |car, index|
-                cars[index] = car
+                cars[index+1] = car
         end  
         cars
     end
 
+    # passing the customer and car 
 
-    def self.buy_car(name, car)
-        all_cars_for_sale.find do |c|
-            c.id == car.id
-            c.customer_id = name.id
-
-        end
+    def self.buy_car(customer_instance, car)
+      car.customer_id = customer_instance.id
+      
+      car
     end
-
-    # car is sold 
-    # def sell_car(customer)
-    #     Car.all.select do |car|
-    #          car.customer_id == nil     
-    #     end.
-        
-   
-
-
-
-    # whatever = gets the int of car that user wants
-
-    #  self.car_avlible.each do |key,value|
-      # if key == whatever
-    #    value
-    #   Car.buy_car (@customer, value )
-        
-    # end
-  # end
-
-
-
-# 
-
-
-
+  
+    
+  
 end
