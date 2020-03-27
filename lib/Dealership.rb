@@ -44,19 +44,6 @@ class Dealership < ActiveRecord::Base
          end
     end
 
-    
-
-
-
-    # returns all new cars for a dealership
-    def new_cars 
-        cars.select { |car| car.status.downcase == "new"}
-    end
-
-    # returns all old cars fro a dealership
-    def used_cars
-        cars.select { |car| car.status.downcase == "used"}
-    end
 
     #returns a list of unsold cars
     def unsold_cars
@@ -67,6 +54,17 @@ class Dealership < ActiveRecord::Base
     def unsold_car_count 
         unsold_cars.count
     end
+
+
+    # # returns all new cars for a dealership
+    # def new_cars 
+    #     cars.select { |car| car.status.downcase == "new"}
+    # end
+
+    # # returns all old cars fro a dealership
+    # def used_cars
+    #     cars.select { |car| car.status.downcase == "used"}
+    # end
 
 
 

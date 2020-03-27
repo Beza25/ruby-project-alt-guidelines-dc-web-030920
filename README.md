@@ -24,6 +24,19 @@ Welcome, whats your name
 
 Welcome to our Car application. we created to be used by 2 different types of user: a potential customer, and a employee of a specific dealership. 
 
+You can do these cool features
+    # As a customer I can see the list of all cars
+    # As a customer, I can see all the dealership
+    # As a customer, I can search a dealrship by providing the dealerhip name and see all the car lists 
+    # As a customer, I can see all the avaliable cars and select the ones I want to buy
+    # As a customer, I can buy a car
+    # As a customer, I can searh a car by make
+    # As an employee, I can see the list of sold cars
+    # As an employee, I can see all unsold cars
+    # AS an employee, I can get number of cars sold
+    # As an employee, I can get the number of cars unsold
+
+
 The first step of our user interface is to prompt the user what type of user they are (customer, or dealer). if the user is a customer we give you options to search through your local dealership's inventory, or to search through all available car inventory. All available car inventory also allows the user to search a specific model. 
 
 The last and possibly most important option we give our customers, is the ability to buy a car. once they find the car that they want, the can go to our buy car option and find the car that they want to purchase. Our app also transfers the title over to the new owner.
